@@ -1,0 +1,67 @@
+#include <stdio.h>
+
+int queue[100],front=-1,rear=-1,max;
+
+int push()
+{
+  if(rear==max-1)
+  {
+    printf("overflow");
+  }
+  else{
+    int n;
+    printf("enter a number:");
+    scanf("%d",&n);
+    if(rear==-1 && front==-1)
+    {
+      front=0;
+      rear=rear+1;
+      queue[rear]=n;
+    }
+    else
+    {
+      rear+=1;
+      queue[rear]=n;
+    }
+  }
+}
+
+int display()
+{
+  int k=front;
+  int m=rear;
+
+  while(m!=k)
+    {
+      printf("%d\n",queue[m]);
+      m=m-1;
+    }
+  printf("%d\n",queue[m]);
+}
+
+int pop()
+{
+  if(front==-1||front>rear)
+  {
+    printf("underflow");
+  }
+  else{
+   printf("element deleted in the queue is %d:",queue[front]);
+    front=front+1;
+  }
+}
+
+int main()
+{
+  printf("enter max");
+  scanf("%d",&max);
+  push();
+  push();
+  push();
+  push();
+  display();
+  pop();
+  display();
+  push();
+  display();
+  }

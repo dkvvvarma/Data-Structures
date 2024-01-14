@@ -1,0 +1,14 @@
+ graph = {'A': ['B', 'C'],
+         'B': ['A', 'D', 'E'],    
+        'C': ['A', 'F'],
+        'D': ['A'],  
+         'E': ['B', 'F'],   
+        'F': ['C', 'B']}
+visited = set()  
+def dfs(visited, graph, node):    
+if node not in visited:
+print (node)    
+visited.add(node)    
+for i in graph[node]:      
+dfs(visited, graph, i) 
+print("Following is the Depth-First Search") dfs(visited, graph, 'A') 

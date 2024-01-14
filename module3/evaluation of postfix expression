@@ -1,0 +1,65 @@
+#include <stdio.h>
+int stack[100],max,top=-1;
+int push(int n)
+{
+    if(top==max-1)
+    {
+        printf("overflow");
+    }
+    else
+    {
+        top+=1;
+        stack[top]=n;
+    }
+}
+int pop()
+{
+    int k;
+    k=stack[top];
+    top-=1;
+    return k;
+}
+int op(char a[])
+{
+    int i,n1,n2,result;
+    char c;
+    for(i=0;a[i]!='\0';i++)
+    {
+        c=a[i];
+        if(c>='0' && c<='9')
+        {
+            push(c-'0');
+        }
+        else
+        {
+            n2=pop();
+            n1=pop();
+            switch(c)
+            {
+                case '+':
+                    result=n1+n2;
+                    break ;
+                case '*':
+                    result=n1*n2;
+                    break ;
+                case '/':
+                    result=n1/n2;
+                    break ;
+                case '-':
+                    result=n1-n2;
+                    break ;
+            }
+            push(result);
+        }
+    }
+    printf("the result is : %d",pop());
+}
+int main()
+{
+    printf("enter the sizeof the array :");
+    scanf("%d",&max);
+    int a[100];
+    printf("enter the postfix expression :");
+    scanf("%s",&a);
+    op(a);
+}

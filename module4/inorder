@@ -1,0 +1,36 @@
+// we are using linked lists for implementing binary trees
+#include<stdio.h>
+#include<stdlib.h>
+struct node {
+int data;
+struct node* left;
+struct node* right;
+};
+struct node* newnode(int data) {
+struct node* node = (struct node*)malloc(sizeof(struct node));
+node -> data = data;
+node -> left = NULL;
+node -> right = NULL;
+return (node);
+}
+void inorder(struct node* node) {
+if(node == NULL) {
+return ;
+}
+else {
+inorder(node->left);
+printf(" %d ", node->data);
+inorder(node -> right);
+}
+}
+int main() {
+struct node* root = newnode(5);
+root -> left = newnode(6);
+root -> right = newnode(7);
+
+root -> left -> left = newnode(2);
+root -> left -> right = newnode(5);
+printf("the inorder travesal of the binary tree is");
+inorder(root);
+return 0;
+}

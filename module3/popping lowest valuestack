@@ -1,0 +1,67 @@
+//stacks all functions
+#include<stdio.h>
+int top=-1;
+int max;
+int stack[1100];
+int push()
+{
+  if(top==max-1)
+  {
+    printf("overflow");
+  }
+  else{
+    int n;
+    top=top+1;
+    printf("enter a value:");
+    scanf("%d",&n);
+    stack[top]=n;
+  }
+}
+
+int display()
+{
+  int k=top;
+  while(k>=0)
+    {
+      printf("%d\n",stack[k]);
+      k=k-1;
+    }
+}
+
+int pop()
+{
+  if(top==-1)
+  {
+    printf("underflow");
+  }
+  else
+  {
+    printf("%d is popped out from the stack:\n",stack[top]);
+    top=top-1;
+  }
+  display();
+}
+
+int peak()
+{
+  if(top==-1)
+  {
+    printf("stack is empty\n");
+  }
+  else
+  {
+    printf("%d is the peak element in the stack\n",stack[top]);
+  }
+}
+
+int main()
+{
+  printf("enter the max value:");
+  scanf("%d",&max);
+  push();
+  push();
+    push();
+    push();
+  display();
+  pop();
+}

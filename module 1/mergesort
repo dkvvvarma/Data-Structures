@@ -1,0 +1,53 @@
+#include<stdio.h>
+
+void merge(int list[], int a, int b, int c){
+    int h1=b-a+1;
+    int h2=c-b;
+    int L[h1],M[h2];
+    
+    for(int i=0;i<h1;i++)
+       L[i]=list[a+i];
+    for(int j=0;j<h2;j++)
+       M[j]=list[b+1+j];
+    
+    int i=0,j=0,k=a;
+    while(i<h1&&j<h2)
+    {
+        if(L[i]<=M[j])
+        {
+            list[k]=L[i];
+            i=i+1;
+        }
+    else
+        {
+            list[k]=M[j];
+            j=j+1;
+        }
+      k=k+1;
+    }
+}
+
+void mergeSort(int list[], int l, int r){
+    if(l<r){
+        
+        int m=l+(r-l)/2;
+        
+        mergeSort(list,l,m);
+        mergeSort(list,m+1,r);
+        
+        merge(list,l,m,r);
+    }
+}
+
+void printArray(int list[], int size){
+    for(int i=0; i<size; i++)
+      printf("%d ",list[i]);
+    printf("\n");
+}
+int main(){
+    int list[]={2,68,85,4,99};
+    int size=sizeof(list)/sizeof(list[0]);
+    mergeSort(list,0,size-1);
+    printf("sorted list: \n");
+    printArray(list,size);
+}
